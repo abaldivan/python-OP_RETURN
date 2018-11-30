@@ -24,7 +24,7 @@
 
 
 import subprocess, json, time, random, os.path, binascii, struct, string, re, hashlib
-import pdb
+import pdb, sys
 
 
 # Python 2-3 compatibility logic
@@ -98,7 +98,12 @@ def OP_RETURN_send(send_address, send_amount, metadata, testnet=False):
 	outputs={send_address: send_amount}
 	
 	if change_amount>=OP_RETURN_BTC_DUST:
-		outputs[change_address]=change_amount
+		print 'Change amount is rounded to: ', round(change_amount,8)
+		proceed = raw_input('Do you wat to proceed ? Y or N: ')
+		if proceed == 'Y':
+			outputs[change_address]=round(change_amount,8)
+		else:
+			sys.exit('Change amount not confirmed')
 		
 	raw_txn=OP_RETURN_create_txn(inputs_spend['inputs'], outputs, metadata, len(outputs), testnet)
 
