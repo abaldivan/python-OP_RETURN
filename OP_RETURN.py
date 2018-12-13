@@ -120,7 +120,7 @@ Usage:
 	if change_amount>=OP_RETURN_BTC_DUST:
 		print 'Change amount is rounded to: ' + str(round(change_amount,8)) + " of: " + str(change_amount)
 		print 'Output amount: ' + str(output_amount)
-		proceed = raw_input('Do you wat to proceed ? Y or N: ')
+		proceed = raw_input('Do you want to proceed ? Y or N: ')
 		if proceed == 'Y':
 			outputs[change_address]=round(change_amount,8)
 		else:
