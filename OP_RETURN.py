@@ -129,8 +129,9 @@ Usage:
 	raw_txn=OP_RETURN_create_txn(inputs_spend['inputs'], outputs, metadata, len(outputs), testnet, regtest)
 
 	# Sign and send the transaction, return result
+	result = OP_RETURN_sign_send_txn(raw_txn, testnet, regtest)
+	return result, REGTEST_RPCPORT, REGTEST_RPCUSER, REGTEST_RPCPASSWORD
 
-	return OP_RETURN_sign_send_txn(raw_txn, testnet, regtest)
 
 
 def OP_RETURN_store(data, testnet=False):
