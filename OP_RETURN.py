@@ -47,6 +47,9 @@ global REGTEST_RPCPASSWORD
 
 if OP_RETURN_BITCOIN_USE_CMD:
 	OP_RETURN_BITCOIN_PATH='/usr/local/bin/bitcoin-cli' # path to bitcoin-cli executable on this server
+	OP_RETURN_BITCOIN_LINUX_PATH='/bin/bitcoin-cli' # path to bitcoin-cli executable on linux server
+	sys.path.append(OP_RETURN_BITCOIN_PATH)
+	sys.path.append(OP_RETURN_BITCOIN_LINUX_PATH)
 	
 else:
 	OP_RETURN_BITCOIN_PORT='' # leave empty to use default port for mainnet/testnet
@@ -444,7 +447,7 @@ def OP_RETURN_bitcoin_check(testnet, regtest):
 
 def OP_RETURN_bitcoin_cmd(command, testnet, regtest, *args): # more params are read from here
 	if OP_RETURN_BITCOIN_USE_CMD:
-		sub_args=[OP_RETURN_BITCOIN_PATH]
+		sub_args=['bitcoin-cli']
 		if testnet:
 			sub_args.append('-testnet')
 		elif regtest:
